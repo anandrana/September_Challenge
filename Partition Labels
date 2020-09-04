@@ -1,0 +1,36 @@
+from collections import Counter
+
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        dic=dict(Counter(S))
+        # print(dic)
+        
+        temp={}
+        ans=[]
+        for st in S:
+                        
+            if st not in temp:
+                temp[st]=1
+            else:
+                temp[st]+=1
+                
+            if(len(temp)!=0):
+                # print(temp)
+                count=0
+                flag=0
+                for k,v in temp.items():
+                    # print(dic[k])
+                    if dic[k]!=v:
+                        flag=1
+                    else:
+                        count+=v
+                if(flag!=1):
+                    ans.append(count)
+                    temp={}            
+            # print(temp)
+        return ans
+            
+            
+        
+        
+        
