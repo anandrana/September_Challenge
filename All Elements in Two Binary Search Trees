@@ -1,0 +1,47 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> List[int]:
+        
+        list1=[]
+        list2=[]
+        def preorder(root,list3):
+            if root is None:
+                return None
+            preorder(root.left,list3)
+            list3.append(root.val)
+            preorder(root.right,list3)
+            
+            return list3
+        l1=preorder(root1,list1)
+        l2=preorder(root2,list2)
+        # print(l1)
+        # print(l2)
+        
+        if not l1:
+            return l2
+        if not l2:
+            return l1
+        i=0
+        j=0
+        ans=[]
+        while(len(l1)>i and len(l2)>j):
+            if(l1[i]>l2[j]):
+                ans.append(l2[j])
+                j+=1
+            else:
+                ans.append(l1[i])
+                i+=1
+        
+        if(len(l1)!=0):
+            ans.extend(l1[i:])
+        
+        if(len(l2)!=0):
+            ans.extend(l2[j:])
+        
+        # print(ans)
+        return ans
