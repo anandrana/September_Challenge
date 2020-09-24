@@ -1,0 +1,25 @@
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        dic1={}
+        dic2={}
+        for st in s:
+            if(st in dic1):
+                dic1[st]+=1
+            else:
+                dic1[st]=1
+        
+        for st in t:
+            if(st in dic2):
+                dic2[st]+=1
+            else:
+                dic2[st]=1
+        
+        for k,v in dic2.items():
+            if k in dic1:
+                if(dic1[k]==v):
+                    pass
+                else:
+                    return k
+            else:
+                return k
+        
